@@ -63,8 +63,8 @@ def PDA_coupling(TD_A,TD_B,COM_A,COM_B):
     Coupling: Float
         Coupling in atomic units
     """
-    ang2bohr=1.8897259885789
-    COM_A=COM_A*ang2bohr
-    COM_B=COM_B*ang2bohr
-    R=np.linalg.norm(COM_B-COM_A)
-    return (np.dot(TD_A,TD_B)/R**3) - (3*(np.dot(TD_A,COM_A)*np.dot(TD_B,COM_B))/R**5)
+    ang2bohr = 1.8897259885789
+    COM_vec = (COM_B - COM_A) * ang2bohr
+    R = np.linalg.norm(COM_vec)
+    return np.dot(TD_A, TD_B) / (R**3) -\
+        3 * np.dot(TD_A, COM_vec) * np.dot(TD_B, COM_vec) / (R**5)
